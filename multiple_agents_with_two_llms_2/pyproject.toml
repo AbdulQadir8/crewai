@@ -12,7 +12,6 @@ dependencies = [
 kickoff = "multiple_agents.main:kickoff"
 plot = "multiple_agents.main:plot"
 mul_agents = "multiple_agents.main1:kickoff"
-mul_agents2 = "multiple_agents.main2:kickoff"
 
 [build-system]
 requires = ["hatchling"]
