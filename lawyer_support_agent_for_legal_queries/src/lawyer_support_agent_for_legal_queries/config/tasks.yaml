@@ -1,0 +1,40 @@
+---
+analyze_legal_query_task:
+  description: Analyze the provided legal query {legal_query} to extract necessary
+    legal terms, case specifics, and jurisdiction details required for targeted document
+    retrieval.
+  expected_output: A structured list containing extracted legal keywords, terms, jurisdiction
+    details, and pertinent case specifics.
+  async_execution: false
+  agent: legal_query_analyzer
+search_legal_documents_task:
+  description: Utilize the keywords and details obtained from the analysis of {legal_query}
+    to search for relevant legal documents and case law using WebsiteSearchTool on
+    various legal databases and websites.
+  expected_output: A list of potential legal documents and case law references, including
+    URLs and brief summaries, that are relevant to the legal query.
+  async_execution: false
+  agent: legal_document_searcher
+  context:
+  - analyze_legal_query_task
+retrieve_legal_documents_task:
+  description: Retrieve and extract the content from the legal documents and case
+    law references identified. Use ScrapeWebsiteTool and PDFSearchTool to obtain full
+    text, important excerpts, and metadata from the retrieved documents.
+  expected_output: Extracted content, including full text or key sections, and metadata
+    from the identified legal documents in a well-structured format.
+  async_execution: false
+  agent: legal_document_retriever
+  context:
+  - search_legal_documents_task
+generate_legal_summary_task:
+  description: Based on the content retrieved, generate a comprehensive summary report
+    that highlights key case law, legal arguments, and other pertinent details extracted
+    from the legal documents to strengthen the case related to {legal_query}.
+  expected_output: A detailed summary report enumerating relevant case laws, key document
+    extracts, and legal references designed to assist the lawyer in building a strong
+    case.
+  async_execution: false
+  agent: legal_summary_generator
+  context:
+  - retrieve_legal_documents_task

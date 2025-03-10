@@ -1,0 +1,22 @@
+[project]
+name = "lawyer_support_agent_for_legal_queries"
+version = "0.1.0"
+description = "lawyer_support_agent_for_legal_queries using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai[tools]>=0.86.0,<1.0.0",
+    "dotenv>=0.9.9",
+    "litellm>=1.60.2",
+]
+
+[project.scripts]
+lawyer_support_agent_for_legal_queries = "lawyer_support_agent_for_legal_queries.main:run"
+run_crew = "lawyer_support_agent_for_legal_queries.main:run"
+train = "lawyer_support_agent_for_legal_queries.main:train"
+replay = "lawyer_support_agent_for_legal_queries.main:replay"
+test = "lawyer_support_agent_for_legal_queries.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
